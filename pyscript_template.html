@@ -1,0 +1,26 @@
+<!-- 必要最小限のPyScript動作 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- pyscriptを使えるようにするために必要な2行 -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <!-- 外部モジュールを指定する -->
+    <py-env>
+    </py-env>
+  </head>
+  <body>
+    <div id="output"/>
+
+    <!-- ここ以下にpythonのコードを書く -->
+    <py-script>
+output = Element('output')
+output.write('Hello world!')
+    </py-script>
+
+  </body>
+</html>

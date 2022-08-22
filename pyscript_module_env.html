@@ -1,0 +1,28 @@
+<!-- 必要最小限のPyScript動作 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- pyscriptを使えるようにするために必要な2行 -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <!-- importするために、ここに書いておく必要がある -->
+    <!-- 自作モジュールを使う時は paths: 以降にモジュール名を書く -->
+    <py-env>
+      - paths:
+        - ./mymodule.py
+    </py-env>
+
+  </head>
+  <body>
+    <py-script>
+import mymodule  # importなのでmain扱いにならない
+
+print('htmlから表示')
+mymodule.hello()  # モジュール内の関数を呼び出せる
+    </py-script>
+  </body>
+</html>

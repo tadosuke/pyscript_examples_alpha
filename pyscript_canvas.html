@@ -1,0 +1,63 @@
+<!-- canvasを利用した描画サンプル -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  </head>
+  <body>
+    <canvas id="output" width="300px" height="200px"/>
+
+    <py-script>
+import math
+from js import document, Element, CanvasRenderingContext2D, Image
+
+canvas: Element = document.querySelector('#output')
+ctx: CanvasRenderingContext2D = canvas.getContext('2d')
+
+
+def draw_rect():
+  """四角の描画."""
+  ctx.fillStyle = "rgb(0, 0, 0)"
+  ctx.fillRect(0, 0, 300, 200)
+
+def draw_arc():
+  """円の描画."""
+  center_x = 50  # 中心X
+  center_y = 50  # 中心Y
+  radius = 20  # 半径
+  angle_start = 0 * math.pi / 180  # 開始角度
+  angle_end = 360 * math.pi / 180  # 終了角度
+  anticlockwise = False  # 反時計回りにするか
+  ctx.fillStyle = "rgb(0, 255, 255)"
+  ctx.arc( center_x, center_y, radius, angle_start, angle_end, anticlockwise ) ;
+  ctx.fill()
+
+def draw_text():
+  """テキストの描画."""
+  ctx.font = "15px bold sans-serif"
+  ctx.fillStyle = "rgb(255, 255, 255)"
+  ctx.fillText(f"canvasに描いています", 5, 20)
+
+def draw_image():
+  """画像の描画."""
+  x = 100
+  y = 60
+  w = 50
+  h = 50
+  image = Image.new()  # pythonではnew Image()とできないので、特殊な書き方になる
+  image.src = 'image.png'
+  image.onload = lambda e: ctx.drawImage(image, x, y, w, h)  # 読み込み待ちをしないと表示されない
+
+
+draw_rect()
+draw_arc()
+draw_text()
+draw_image()
+
+    </py-script>
+  </body>
+</html>

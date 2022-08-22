@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <py-env>
+      - matplotlib
+    </py-env>
+  </head>
+  <body>
+    <div id="output"></div>
+    <py-script>
+import matplotlib.pyplot as plt
+
+x = [i for i in range(100)]
+y = [i**2 for i in range(100)]
+
+fig = plt.figure(figsize=(3, 3))
+plt.plot(x, y)
+
+pyscript.write('output', fig)
+    </py-script>
+  </body>
+</html>

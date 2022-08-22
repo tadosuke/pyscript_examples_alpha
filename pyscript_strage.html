@@ -1,0 +1,38 @@
+<!-- 必要最小限のPyScript動作 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- pyscriptを使えるようにするために必要な2行 -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <!-- 外部モジュールを指定する -->
+    <py-env>
+    </py-env>
+  </head>
+  <body>
+    <input id="output" style="width:300px"/>
+
+    <!-- ここ以下にpythonのコードを書く -->
+    <py-script>
+from js import localStorage, document
+
+#　localStorage.removeItem('count')
+
+count = localStorage.getItem('count')
+if count is None:
+  count = 0
+else:
+  count = int(count) + 1
+
+localStorage.setItem('count', count)
+
+output = document.querySelector('#output')
+output.value = f'{count} 回目のご来店ありがとうございます。'
+    </py-script>
+
+  </body>
+</html>

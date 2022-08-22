@@ -1,0 +1,58 @@
+<!-- キー入力を取得するサンプル -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- pyscriptを使えるようにするために必要な2行 -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  </head>
+  <body>
+    <div style="height:300px;border:solid;">
+      Key=<input id="key"/><br/>
+      MouseButton=<input id="mousebutton"/><br/>
+      MousePos=<input id="mousepos" value="()"/><br/>
+    </div>
+
+    <!-- ここ以下にpythonのコードを書く -->
+    <py-script>
+from pyodide import create_proxy
+
+# エレメント
+el_key = Element('key')
+el_mousebutton = Element('mousebutton')
+el_mousepos = Element('mousepos')
+
+# 呼び出す関数はasyncにする必要がある
+async def on_keydown(event):
+    """キーが押されたとき."""
+    el_key.element.value = event.key
+
+async def on_keyup(event):
+    """キーが離されたとき."""
+    el_key.element.value = ''
+
+async def on_mousedown(event):
+    """マウスボタンが押されたとき."""
+    el_mousebutton.element.value = event.button
+
+async def on_mouseup(event):
+    """マウスボタンが離されたとき."""
+    el_mousebutton.element.value = ''
+
+async def on_mousemove(event):
+    """マウスカーソルが移動したとき."""
+    el_mousepos.element.value = f'({event.x}, {event.y})'
+
+panel = document.querySelector("body")
+panel.addEventListener("keydown", create_proxy(on_keydown))
+panel.addEventListener("keyup", create_proxy(on_keyup))
+panel.addEventListener("mousedown", create_proxy(on_mousedown))
+panel.addEventListener("mouseup", create_proxy(on_mouseup))
+panel.addEventListener("mousemove", create_proxy(on_mousemove))
+    </py-script>
+
+  </body>
+</html>

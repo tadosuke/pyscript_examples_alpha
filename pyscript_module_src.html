@@ -1,0 +1,18 @@
+<!-- 必要最小限のPyScript動作 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- pyscriptを使えるようにするために必要な2行 -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+  </head>
+  <body>
+    <py-script src="./mymodule.py"><!-- main扱いになる -->
+print('htmlから表示')  # srcを指定した場合、このコードは実行されない
+    </py-script>
+  </body>
+</html>
